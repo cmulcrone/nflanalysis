@@ -36,12 +36,12 @@ def score_player(player):
             score += scoring[stat](getattr(player,stat))    
     return score
 
-with open('test.csv', 'w') as csvfile:
-    statwriter = csv.writer(csvfile, delimiter=',', \
-            quotechar='|', quoting=csv.QUOTE_MINIMAL)
-    for week in weeks:
+for week in weeks:
+    with open('Week'+str(week)+'.csv', 'w') as csvfile:
+        statwriter = csv.writer(csvfile, delimiter=',', \
+                quotechar='|', quoting=csv.QUOTE_MINIMAL)
         players = nflgame.combine_game_stats(nflgame.games(2017, week)) 
-        for p in players.limit(10):
+        for p in players:
             score = score_player(p)
             #Writes individual scores of users
             statwriter.writerow([week, p.playerid.encode(encoding='UTF-8'), \
@@ -53,4 +53,4 @@ with open('test.csv', 'w') as csvfile:
                     p.guess_position.encode(encoding='UTF_8'), \
                     round(score,2))
 
-'''
+    '''
