@@ -37,7 +37,7 @@ def score_player(player):
     return score
 
 for week in weeks:
-    with open('Week'+str(week)+'.csv', 'w') as csvfile:
+    with open('output/player_score/Week'+str(week)+'.csv', 'w') as csvfile:
         statwriter = csv.writer(csvfile, delimiter=',', \
                 quotechar='|', quoting=csv.QUOTE_MINIMAL)
         players = nflgame.combine_game_stats(nflgame.games(2017, week)) 
