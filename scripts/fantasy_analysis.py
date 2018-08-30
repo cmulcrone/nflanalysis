@@ -1,8 +1,7 @@
-import pandas as pd
+#Source: https://github.com/BurntSushi/nflgame/issues/323
+
 import nflgame
 import csv
-
-playerdf = pd.DataFrame({})
 
 weeks = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]
 
