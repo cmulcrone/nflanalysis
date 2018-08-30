@@ -1,8 +1,9 @@
 import nflgame
+import csv
 
 weeks = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]
 
-players = nflgame.combine_game_stats(nflgame.games(2017, 1))
+#players = nflgame.combine_game_stats(nflgame.games(2017, 1))
 
 scoring = {
     # Passing
@@ -33,7 +34,21 @@ def score_player(player):
             score += scoring[stat](getattr(player,stat))    
     return score
 
-for p in players.limit(100):
-    score = score_player(p)
-    print (p.name, p.passing_yds,score)
+with open('test.csv', 'w') as csvfile:
+    statwriter = csv.writer(csvfile, delimiter=',', \
+            quotechar='|', quoting=csv.QUOTE_MINIMAL)
+    for week in weeks:
+        players = nflgame.combine_game_stats(nflgame.games(2017, week)) 
+        for p in players.limit(10):
+            score = score_player(p)
+            #Writes individual scores of users
+            statwriter.writerow([week, p.playerid.encode(encoding='UTF-8'), \
+                p.name.encode(encoding='UTF-8'), \
+                p.guess_position.encode(encoding='UTF_8'), \
+                round(score,2)])
+            '''print (week, p.playerid.encode(encoding='UTF-8'), \
+                    p.name.encode(encoding='UTF-8'), \
+                    p.guess_position.encode(encoding='UTF_8'), \
+                    round(score,2))
 
+'''
