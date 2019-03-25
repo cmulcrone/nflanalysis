@@ -13,20 +13,18 @@ scoring = {
     'passing_tds' : lambda x : x*4,
     'passing_twoptm'  : lambda x : x*2,
     # Rushing
-    #'rushing_yds' : lambda x : x*.1 + (2 if x >= 100 else 0),
     'rushing_yds' : lambda x : x*.1,
     'rushing_tds' : lambda x : x*6,
     'kickret_tds' : lambda x : x*6,
     'rushing_twoptm' : lambda x : x*2,
     # Receiving
     'receiving_tds' : lambda x : x*6,
-    #'receiving_yds' : lambda x : x*.1 + (2 if x >= 100 else 0),
     'receiving_yds' : lambda x : x*.1,
-    'receiving_rec' : lambda x : x*.5,
+    #Aruna override-'receiving_rec' : lambda x : x*.5,
     'receiving_twoptm' : lambda x : x*2,
     # Various
     'fumbles_lost' : lambda x : x*-2, 
-    'passing_ints' : lambda x : x*-2,
+    'passing_ints' : lambda x : x*-1,
 }
 
 def score_player(player):
